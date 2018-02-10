@@ -1,6 +1,6 @@
-![WBPA.Amazon](https://nblcdn.net/themes/weubphoria.dk/nuget/wbpa-awssdk-dynamodb.png?v=1)
+![WBPA.Amazon.DynamoDb](https://nblcdn.net/themes/weubphoria.dk/nuget/wbpa-awssdk-dynamodb.png?v=1)
 
-WBPA.Amazon.DyanmoDb
+WBPA.Amazon.DynamoDb
 ----------------
 The WBPA.Amazon.DynamoDb assembly provides extensions and generic classes to help ease the usage towards AWS and is the DynamoDb member of a range of wrappers tailored to the AWSSDK.
 
