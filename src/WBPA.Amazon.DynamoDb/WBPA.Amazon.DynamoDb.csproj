@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.2018.840</Version>
+    <Company>Weubphoria</Company>
+    <Authors>Michael Mortensen</Authors>
+    <Product>AWSSDK.DynamoDBv2 Wrapper by Weubphoria</Product>
+    <Description>The WBPA.Amazon.DynamoDb assembly provides extensions and generic classes to help ease the usage towards AWS and is the DynamoDb member of a range of wrappers tailored to the AWSSDK.</Description>
+    <Copyright>Copyright © Weubphoria 2009-2018. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://github.com/wbpa/amazon-dynamodb/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/wbpa/amazon-dynamodb</PackageProjectUrl>
+    <PackageTags>amazon aws cloud aws-sdk wrapper wbpa dynamodb ddb nosql table item</PackageTags>
+    <AssemblyVersion>1.0.2018.840</AssemblyVersion>
+    <FileVersion>1.0.2018.840</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.6" />
+    <PackageReference Include="WBPA.Amazon" Version="1.0.2018.840" />
+  </ItemGroup>
+
+</Project>
