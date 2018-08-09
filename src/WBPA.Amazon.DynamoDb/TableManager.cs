@@ -5,6 +5,7 @@ using Amazon;
 using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
 using Cuemon;
+using Cuemon.Threading;
 using WBPA.Amazon.DynamoDb.Indexes;
 using WBPA.Amazon.Runtime;
 using GlobalSecondaryIndex = Amazon.DynamoDBv2.Model.GlobalSecondaryIndex;

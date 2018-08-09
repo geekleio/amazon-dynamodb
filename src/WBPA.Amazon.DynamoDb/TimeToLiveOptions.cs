@@ -1,4 +1,5 @@
 ﻿using Amazon.DynamoDBv2.Model;
+using Cuemon.Threading;
 
 namespace WBPA.Amazon.DynamoDb
 {

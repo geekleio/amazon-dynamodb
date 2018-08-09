@@ -1,4 +1,5 @@
-﻿using WBPA.Amazon.DynamoDb.Indexes;
+﻿using Cuemon.Threading;
+using WBPA.Amazon.DynamoDb.Indexes;
 
 namespace WBPA.Amazon.DynamoDb
 {

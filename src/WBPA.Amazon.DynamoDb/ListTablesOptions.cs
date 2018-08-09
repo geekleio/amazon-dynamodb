@@ -1,4 +1,6 @@
-﻿namespace WBPA.Amazon.DynamoDb
+﻿using Cuemon.Threading;
+
+namespace WBPA.Amazon.DynamoDb
 {
     /// <summary>
     /// Specifies options that is related to list tables operations.

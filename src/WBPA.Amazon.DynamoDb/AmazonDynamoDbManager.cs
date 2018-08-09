@@ -5,6 +5,7 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
 using Cuemon;
+using Cuemon.Threading;
 using WBPA.Amazon.Runtime;
 
 namespace WBPA.Amazon.DynamoDb

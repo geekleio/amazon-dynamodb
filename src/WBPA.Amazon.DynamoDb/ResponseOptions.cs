@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cuemon.Threading;
 
 namespace WBPA.Amazon.DynamoDb
 {

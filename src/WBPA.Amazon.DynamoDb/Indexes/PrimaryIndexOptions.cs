@@ -1,4 +1,6 @@
-﻿namespace WBPA.Amazon.DynamoDb.Indexes
+﻿using Cuemon.Threading;
+
+namespace WBPA.Amazon.DynamoDb.Indexes
 {
     /// <summary>
     /// Specifies options that is related to <see cref="PrimaryIndex"/> operations. This class cannot be inherited.
