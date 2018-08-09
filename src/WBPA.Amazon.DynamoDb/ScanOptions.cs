@@ -140,10 +140,10 @@ namespace WBPA.Amazon.DynamoDb
         }
 
         /// <summary>
-        /// Gets the primary key of the first item that this operation will evaluate.
+        /// Gets or sets the primary key of the first item that this operation will evaluate.
         /// </summary>
         /// <value>The primary key of the first item that this operation will evaluate.</value>
-        public PrimaryKey ExclusiveStartKey { get; }
+        public PrimaryKey ExclusiveStartKey { get; set; }
 
         /// <summary>
         /// Gets or sets the name of a secondary index to scan.

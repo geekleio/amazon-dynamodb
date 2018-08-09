@@ -49,10 +49,10 @@ namespace WBPA.Amazon.DynamoDb
         public SecondaryIndexCollection<GlobalSecondaryIndex> GlobalSecondaryIndexes { get; }
 
         /// <summary>
-        /// Gets the settings for DynamoDB Streams on the table.
+        /// Gets or sets the settings for DynamoDB Streams on the table.
         /// </summary>
         /// <value>The settings for DynamoDB Streams on the table.</value>
-        public StreamSpecification StreamSpecification { get; }
+        public StreamSpecification StreamSpecification { get; set; }
 
         /// <summary>
         /// Gets or sets the provisioned throughput settings for a specified table or index.
