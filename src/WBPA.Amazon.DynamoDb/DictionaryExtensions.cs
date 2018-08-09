@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Amazon.DynamoDBv2.Model;
 using Cuemon;
+using Cuemon.Collections.Generic;
 
 namespace WBPA.Amazon.DynamoDb
 {
@@ -10,6 +13,44 @@ namespace WBPA.Amazon.DynamoDb
     /// </summary>
     public static class DictionaryExtensions
     {
+        public static string GetString(this IDictionary<string, AttributeValue> dic, string key)
+        {
+            Validator.ThrowIfNull(dic, nameof(dic));
+            return dic.GetValueOrDefault(key)?.S;
+        }
+
+        public static T GetNumber<T>(this IDictionary<string, AttributeValue> dic, string key) where T : IConvertible
+        {
+            Validator.ThrowIfNull(dic, nameof(dic));
+            var valueOrDefault = dic.GetValueOrDefault(key);
+            return valueOrDefault == null ? default(T) : valueOrDefault.N.As<T>();
+        }
+
+        public static Stream GetBinary(this IDictionary<string, AttributeValue> dic, string key)
+        {
+            Validator.ThrowIfNull(dic, nameof(dic));
+            return dic.GetValueOrDefault(key)?.B;
+        }
+
+        public static IEnumerable<string> GetStringSequence(this IDictionary<string, AttributeValue> dic, string key)
+        {
+            Validator.ThrowIfNull(dic, nameof(dic));
+            return dic.GetValueOrDefault(key)?.SS;
+        }
+
+        public static IEnumerable<T> GetNumberSequence<T>(this IDictionary<string, AttributeValue> dic, string key) where T : IConvertible
+        {
+            Validator.ThrowIfNull(dic, nameof(dic));
+            var valueOrDefault = dic.GetValueOrDefault(key);
+            return valueOrDefault?.NS.Select(s => s.As<T>()) ?? Enumerable.Empty<T>();
+        }
+
+        public static IEnumerable<Stream> GetBinarySequence(this IDictionary<string, AttributeValue> dic, string key)
+        {
+            Validator.ThrowIfNull(dic, nameof(dic));
+            return dic.GetValueOrDefault(key)?.BS;
+        }
+
         /// <summary>
         /// Adds an element with the provided key and value to the dictionary.
         /// </summary>
