@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Label="Globals">
     <SccProjectName>SAK</SccProjectName>
@@ -10,7 +10,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2018.840</Version>
+    <Version>1.0.2018.2200</Version>
     <Company>Weubphoria</Company>
     <Authors>Michael Mortensen</Authors>
     <Product>AWSSDK.DynamoDBv2 Wrapper by Weubphoria</Product>
@@ -19,13 +19,13 @@
     <PackageLicenseUrl>https://github.com/wbpa/amazon-dynamodb/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/wbpa/amazon-dynamodb</PackageProjectUrl>
     <PackageTags>amazon aws cloud aws-sdk wrapper wbpa dynamodb ddb nosql table item</PackageTags>
-    <AssemblyVersion>1.0.2018.840</AssemblyVersion>
-    <FileVersion>1.0.2018.840</FileVersion>
+    <AssemblyVersion>1.0.2018.2200</AssemblyVersion>
+    <FileVersion>1.0.2018.2200</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.6" />
-    <PackageReference Include="WBPA.Amazon" Version="1.0.2018.840" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.12" />
+    <PackageReference Include="WBPA.Amazon" Version="1.0.2018.2200" />
   </ItemGroup>
 
 </Project>
