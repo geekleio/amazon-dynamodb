@@ -33,7 +33,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="item">The map of attribute name/value pairs, one for each attribute.</param>
         /// <param name="setup">The <see cref="ItemOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<PutItemResponse> PutAsync(string table, TableItem item, Action<ItemOptions> setup = null)
+        public Task<PutItemResponse> PutAsync(string table, TableItem item, Action<ItemOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             Validator.ThrowIfNull(item, nameof(item));
@@ -49,7 +49,7 @@ namespace WBPA.Amazon.DynamoDb
                 ReturnItemCollectionMetrics = options.ResponseMetrics.ToReturnItemCollectionMetrics(),
                 ReturnValues = options.ResponseAttributes.ToReturnValue(TableItemOperation.Create)
             };
-            return await Client.PutItemAsync(pir, options.CancellationToken).ConfigureAwait(false);
+            return Client.PutItemAsync(pir, options.CancellationToken);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="key">The map of attribute names to <see cref="AttributeValue"/> objects, representing the primary key of the item to delete.</param>
         /// <param name="setup">The <see cref="ItemOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<DeleteItemResponse> DeleteAsync(string table, PrimaryKey key, Action<ItemOptions> setup = null)
+        public Task<DeleteItemResponse> DeleteAsync(string table, PrimaryKey key, Action<ItemOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             Validator.ThrowIfNull(key, nameof(key));
@@ -75,7 +75,7 @@ namespace WBPA.Amazon.DynamoDb
                 ExpressionAttributeNames = options.ExpressionMapping,
                 Key = key.ToAttributeValues()
             };
-            return await Client.DeleteItemAsync(dir, options.CancellationToken).ConfigureAwait(false);
+            return Client.DeleteItemAsync(dir, options.CancellationToken);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="key">The map of attribute names to <see cref="AttributeValue"/> objects, representing the primary key of the item to retrieve.</param>
         /// <param name="setup">The <see cref="ResponseOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<GetItemResponse> GetAsync(string table, PrimaryKey key, Action<ResponseOptions> setup = null)
+        public Task<GetItemResponse> GetAsync(string table, PrimaryKey key, Action<ResponseOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             Validator.ThrowIfNull(key, nameof(key));
@@ -99,7 +99,7 @@ namespace WBPA.Amazon.DynamoDb
                 ConsistentRead = options.ConsistentRead,
                 ProjectionExpression = options.ProjectionExpression
             };
-            return await Client.GetItemAsync(gir, options.CancellationToken).ConfigureAwait(false);
+            return Client.GetItemAsync(gir, options.CancellationToken);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="key">The map of attribute names to <see cref="AttributeValue"/> objects, representing the primary key of the item to update.</param>
         /// <param name="setup">The <see cref="UpdateItemOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<UpdateItemResponse> UpdateAsync(string table, PrimaryKey key, Action<UpdateItemOptions> setup = null)
+        public Task<UpdateItemResponse> UpdateAsync(string table, PrimaryKey key, Action<UpdateItemOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             Validator.ThrowIfNull(key, nameof(key));
@@ -126,7 +126,7 @@ namespace WBPA.Amazon.DynamoDb
                 Key = key.ToAttributeValues(),
                 UpdateExpression = options.UpdateExpression
             };
-            return await Client.UpdateItemAsync(uir, options.CancellationToken).ConfigureAwait(false);
+            return Client.UpdateItemAsync(uir, options.CancellationToken);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="expression">The values that can be substituted in an expression.</param>
         /// <param name="setup">The <see cref="QueryOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<QueryResponse> QueryAsync(string table, string keyConditionExpression, Expression expression, Action<QueryOptions> setup = null)
+        public Task<QueryResponse> QueryAsync(string table, string keyConditionExpression, Expression expression, Action<QueryOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             Validator.ThrowIfNullOrWhitespace(keyConditionExpression, nameof(keyConditionExpression));
@@ -159,7 +159,7 @@ namespace WBPA.Amazon.DynamoDb
                 ScanIndexForward = options.ScanIndexForward
             };
             if (options.Limit.HasValue) { qr.Limit = options.Limit.Value; }
-            return await Client.QueryAsync(qr, options.CancellationToken).ConfigureAwait(false);
+            return Client.QueryAsync(qr, options.CancellationToken);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="table">The name of the table containing the requested items.</param>
         /// <param name="setup">The <see cref="ScanOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<ScanResponse> ScanAsync(string table, Action<ScanOptions> setup = null)
+        public Task<ScanResponse> ScanAsync(string table, Action<ScanOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             var options = setup.ConfigureOptions();
@@ -188,7 +188,7 @@ namespace WBPA.Amazon.DynamoDb
             if (options.Limit.HasValue) { sr.Limit = options.Limit.Value; }
             if (options.Segment.HasValue) { sr.Segment = options.Segment.Value; }
             if (options.TotalSegments.HasValue) { sr.TotalSegments = options.TotalSegments.Value; }
-            return await Client.ScanAsync(sr, options.CancellationToken).ConfigureAwait(false);
+            return Client.ScanAsync(sr, options.CancellationToken);
         }
     }
 }

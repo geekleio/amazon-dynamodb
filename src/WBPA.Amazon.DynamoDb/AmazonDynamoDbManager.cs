@@ -31,11 +31,11 @@ namespace WBPA.Amazon.DynamoDb
         /// </summary>
         /// <param name="setup">The <see cref="AsyncOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<DescribeLimitsResponse> DescribeLimitsAsync(Action<AsyncOptions> setup = null)
+        public Task<DescribeLimitsResponse> DescribeLimitsAsync(Action<AsyncOptions> setup = null)
         {
             var options = setup.ConfigureOptions();
             var dlr = new DescribeLimitsRequest();
-            return await Client.DescribeLimitsAsync(dlr, options.CancellationToken).ConfigureAwait(false);
+            return Client.DescribeLimitsAsync(dlr, options.CancellationToken);
         }
     }
 }

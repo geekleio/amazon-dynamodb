@@ -36,7 +36,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="index">The attributes that make up the primary key for a table or an index.</param>
         /// <param name="setup">The <see cref="TableOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<CreateTableResponse> CreateAsync(string table, PrimaryIndex index, Action<TableOptions> setup = null)
+        public Task<CreateTableResponse> CreateAsync(string table, PrimaryIndex index, Action<TableOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             Validator.ThrowIfNull(index, nameof(index));
@@ -62,7 +62,7 @@ namespace WBPA.Amazon.DynamoDb
                 ProvisionedThroughput = options.Throughput,
                 StreamSpecification = options.StreamSpecification
             };
-            return await Client.CreateTableAsync(ctr, options.CancellationToken).ConfigureAwait(false);
+            return Client.CreateTableAsync(ctr, options.CancellationToken);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="table">The name of the table to delete.</param>
         /// <param name="setup">The <see cref="AsyncOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<DeleteTableResponse> DeleteAsync(string table, Action<AsyncOptions> setup = null)
+        public Task<DeleteTableResponse> DeleteAsync(string table, Action<AsyncOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             var options = setup.ConfigureOptions();
@@ -79,7 +79,7 @@ namespace WBPA.Amazon.DynamoDb
             {
                 TableName = table
             };
-            return await Client.DeleteTableAsync(dtr, options.CancellationToken).ConfigureAwait(false);
+            return Client.DeleteTableAsync(dtr, options.CancellationToken);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="table">The name of the table to describe.</param>
         /// <param name="setup">The <see cref="AsyncOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<DescribeTableResponse> DescribeAsync(string table, Action<AsyncOptions> setup = null)
+        public Task<DescribeTableResponse> DescribeAsync(string table, Action<AsyncOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             var options = setup.ConfigureOptions();
@@ -96,7 +96,7 @@ namespace WBPA.Amazon.DynamoDb
             {
                 TableName = table
             };
-            return await Client.DescribeTableAsync(dtr, options.CancellationToken).ConfigureAwait(false);
+            return Client.DescribeTableAsync(dtr, options.CancellationToken);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="table">The name of the table to be described.</param>
         /// <param name="setup">The <see cref="AsyncOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<DescribeTimeToLiveResponse> DescribeTimeToLiveAsync(string table, Action<AsyncOptions> setup = null)
+        public Task<DescribeTimeToLiveResponse> DescribeTimeToLiveAsync(string table, Action<AsyncOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             var options = setup.ConfigureOptions();
@@ -113,7 +113,7 @@ namespace WBPA.Amazon.DynamoDb
             {
                 TableName = table
             };
-            return await Client.DescribeTimeToLiveAsync(dttlr, options.CancellationToken).ConfigureAwait(false);
+            return Client.DescribeTimeToLiveAsync(dttlr, options.CancellationToken);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace WBPA.Amazon.DynamoDb
         /// </summary>
         /// <param name="setup">The <see cref="ListTablesOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<ListTablesResponse> ListAsync(Action<ListTablesOptions> setup = null)
+        public Task<ListTablesResponse> ListAsync(Action<ListTablesOptions> setup = null)
         {
             var options = setup.ConfigureOptions();
             var ltr = new ListTablesRequest()
@@ -129,7 +129,7 @@ namespace WBPA.Amazon.DynamoDb
                 ExclusiveStartTableName = options.ExclusiveStartTableName,
                 Limit = options.Limit
             };
-            return await Client.ListTablesAsync(ltr, options.CancellationToken).ConfigureAwait(false);
+            return Client.ListTablesAsync(ltr, options.CancellationToken);
         }
 
 
@@ -140,7 +140,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="table">The name of the table to be updated.</param>
         /// <param name="setup">The <see cref="UpdateTableOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<UpdateTableResponse> UpdateAsync(string table, Action<UpdateTableOptions> setup = null)
+        public Task<UpdateTableResponse> UpdateAsync(string table, Action<UpdateTableOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             var options = setup.ConfigureOptions();
@@ -152,7 +152,7 @@ namespace WBPA.Amazon.DynamoDb
                 StreamSpecification = options.StreamSpecification,
                 GlobalSecondaryIndexUpdates = options.ToGlobalSecondaryIndexUpdates()
             };
-            return await Client.UpdateTableAsync(utr, options.CancellationToken).ConfigureAwait(false);
+            return Client.UpdateTableAsync(utr, options.CancellationToken);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace WBPA.Amazon.DynamoDb
         /// <param name="table">The name of the table to be configured.</param>
         /// <param name="setup">The <see cref="TimeToLiveOptions" /> which need to be configured.</param>
         /// <returns>The task object representing the asynchronous operation.</returns>
-        public async Task<UpdateTimeToLiveResponse> UpdateTimeToLiveAsync(string table, Action<TimeToLiveOptions> setup = null)
+        public Task<UpdateTimeToLiveResponse> UpdateTimeToLiveAsync(string table, Action<TimeToLiveOptions> setup = null)
         {
             DynamoValidator.ThrowIfTableNameIsNotValid(table);
             var options = setup.ConfigureOptions();
@@ -170,7 +170,7 @@ namespace WBPA.Amazon.DynamoDb
                 TableName = table,
                 TimeToLiveSpecification = options.Specification
             };
-            return await Client.UpdateTimeToLiveAsync(uttlr, options.CancellationToken).ConfigureAwait(false);
+            return Client.UpdateTimeToLiveAsync(uttlr, options.CancellationToken);
         }
     }
 }
